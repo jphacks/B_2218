@@ -47,7 +47,6 @@ preshed==3.0.8
 progressbar2==3.53.3
 prompt-toolkit==3.0.31
 pure-eval==0.2.2
-PyAudio==0.2.12
 pycparser==2.21
 pydantic==1.9.2
 pydub==0.25.1

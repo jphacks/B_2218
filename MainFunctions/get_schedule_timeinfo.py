@@ -17,7 +17,7 @@ headers = {'Content-Type': 'application/json', 'key':API_Key}
 def get_schedule_timeinfo(text):
 
   #time_rangeを抽出
-  nlp = spacy.load('ja_ginza_electra')
+  nlp = spacy.load('ja_ginza')
   doc = nlp(text)
   time_range = None
   matcher = Matcher(nlp.vocab)

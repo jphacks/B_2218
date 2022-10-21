@@ -37,8 +37,15 @@ def Hello():
     return {"Hello":"World!"}
 
 
-# @app.post("/range/")
-# async def range(text:Text):
-#   start_time, finish_time, time_range, wordlist = get_schedule_timeinfo(text.text)
-#   tlist = [start_time, finish_time, time_range, wordlist]
-#   return tlist
+@app.post("/range/")
+async def range(text:Text):
+  start_time, finish_time, time_range, wordlist = get_schedule_timeinfo(text.text)
+  tlist = [start_time, finish_time, time_range, wordlist]
+  return tlist
+
+@app.post("/task/")
+async def range(text:Text):
+  wordlist = ["明日","朝六時","三時間"]
+  result,location = get_schedule(text.text, wordlist)
+  resultList = [result,location]
+  return resultList

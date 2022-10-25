@@ -1,0 +1,61 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+    /* 画像ファイルの指定 */
+    /* background-image: url(../src/assets/images/secretary.png); */
+   
+    /* 画像を常に天地左右の中央に配置 */
+    /* background-position: center center; */
+     
+    /* 画像をタイル状に繰り返し表示しない */
+    /* background-repeat: no-repeat; */
+     
+    /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
+    /* background-attachment: fixed; */
+     
+    /* 表示するコンテナの大きさに基づいて、背景画像を調整 */
+    /* background-size: cover; */
+     
+    /* 背景画像が読み込まれる前に表示される背景のカラー */
+    /* background-color: #464646;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+
+
+/* .visual{
+  width:100%;
+  height:400px;
+  position:relative;
+  z-index: -1;
+  background: url(secretary.png) no-repeat  bottom;
+  background-size:cover;
+  text-align: center;
+} */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+#video {
+  position: fixed; 
+  margin: 0;
+   width:100%; 
+   height:100%;
+   top: 0px;
+   left: 0px;
+   bottom: 0px;
+   right: 0px;
+   overflow:hidden;
+   display: flex;
+   z-index:-1;
+}
+
+body {
+  background-color: black;
+}

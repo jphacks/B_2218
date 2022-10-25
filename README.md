@@ -38,7 +38,7 @@
 - 
 - 
   
-![Alt text](./architecture.png)
+
 #### デバイス
 
 ### 独自技術

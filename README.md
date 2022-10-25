@@ -1,6 +1,6 @@
 # おてがるAI秘書
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2022/08/JPHACKS2022_ogp.jpg)](https://www.youtube.com/watch?v=LUPQFB4QyVo)
+![Introduction](https://user-images.githubusercontent.com/103818070/197890016-6b52f84e-27f8-40c3-86ed-e9d02d070517.JPG)
 
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）

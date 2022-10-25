@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 from MainFunctions.get_schedule import get_schedule
 from MainFunctions.get_schedule_timeinfo import get_schedule_timeinfo
+from MainFunctions.get_date import get_date
 
 class Text(BaseModel):
     text: str
@@ -42,6 +43,11 @@ async def range(text:Text):
   start_time, finish_time, time_range, wordlist = get_schedule_timeinfo(text.text)
   tlist = [start_time, finish_time, time_range, wordlist]
   return tlist
+
+@app.post("/date/")
+async def date(text:Text):
+  date = get_date(text.text)
+  return date
 
 @app.post("/task/")
 async def range(text:Text):

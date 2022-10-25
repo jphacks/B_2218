@@ -8,7 +8,7 @@ from Helpers.lookahead import lookahead
 
 
 def get_schedule(text,wordlist):
-  nlp = spacy.load('ja_ginza')
+  nlp = spacy.load('ja_ginza_electra')
   doc = nlp(text)
 
   #場所抽出

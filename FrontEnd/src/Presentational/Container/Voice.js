@@ -140,24 +140,24 @@ const SThread = styled.div`
 
 `
 const TNow = styled.div`
-  position: relative;
+  position: fixed;
   width: 70%;
   border: solid 1px ;
   background-color: #ffbf8b;
   margin: auto;
-  margin-top: 5%;
-  margin-left: 10%;
+  margin-top: 27%;
+  margin-left: 13%;
   border-radius: 10px;
 `
 
 const TResult = styled.div`
-position: absolute;
+position: fixed;
   width: 70%;
   height: 160px;
   border: solid 1px;
   background-color: #ffe9d8;
-  margin:auto;
-  margin-left: 4%;
+  margin-top: 70%;
+  margin-left: 9%;
   border-radius: 20px;
   padding: 15px;
   padding-top: 10px;
@@ -167,17 +167,20 @@ position: absolute;
 `;
 
 const SMikeWrap = styled.div`
-  padding: 35%;
-  height: 100px;
-  width: 140px;
+position: fixed;
+  padding-top: 165%;
+  margin-left: 15%;
+  
+ 
+
 
 `;
 
 const Mike = styled.button`
   position: absolute;
  
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
   margin: auto;
   top: 80%;
   left: 35%;

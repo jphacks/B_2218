@@ -21,11 +21,19 @@ import RegisterTask from './Presentational/Container/RegisterTask';
 import GetTask from './Presentational/Container/getTask';
 import CommonBtn from './Presentational/Atoms/CommonBtn';
 
+import ituYotei from '../src/assets/Voice/ituno-yotei.wav'
+import ituKadai from '../src/assets/Voice/ituno-kadai.wav'
+import Kadai from '../src/assets/Voice/kadai.wav'
+
 
 
 
 
 function App() {
+
+  const MituYotei = new Audio(ituYotei);
+  const MituKadai = new Audio(ituKadai);
+  const MKadai = new Audio(Kadai);
 
   const [display, setDisplay] = useState(0);
   const [user, setUser] = useState(0);
@@ -37,24 +45,24 @@ function App() {
   }
 
   // main
-  const start = async () => {
-    const auth = await getAuth();
-    const user = auth.currentUser;
 
+  const start = async () => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
     if (user) {
+      
       setUser({
         email: user.email,
         uid: user.uid
       })
-
+  
       setDisplay(3)
-
-
       
     } else {
       setDisplay(1)
     }
-
+  });
+    
   }
 
   const onToKAIIN = () => {
@@ -94,12 +102,15 @@ function App() {
     setDisplay(4)
   }
   const toRT = () => {
+    MKadai.play()
     setDisplay(5)
   }
   const toGP = () => {
+    MituYotei.play()
     setDisplay(6)
   }
   const toGT = () => {
+    MituKadai.play()
     setDisplay(7)
   }
 
@@ -109,8 +120,8 @@ function App() {
       {
         display === 0 && (
           <SMain>
-            {/* <Title>お手軽AI秘書</Title>
-            <STartBtn onClick={start}> はじめる</STartBtn> */}
+            <Title>おてがるAI秘書</Title>
+            <STartBtn onClick={start}> はじめる</STartBtn>
 
           </SMain>
 
@@ -184,11 +195,20 @@ function App() {
         display === 3 && (
           <>
             <SMain>
-            <Title>お手軽AI秘書</Title>
+            <Title>おてがるAI秘書</Title>
+
+            <CommonBtnFst>
             <CommonBtn text="予定の登録" clickedFun={toRP}/>
+            </CommonBtnFst>
+            <CommonBtnSnd>
             <CommonBtn text="課題の登録" clickedFun={toRT}/>
-            <CommonBtn text="予定の取得" clickedFun={toGP}/>
-            <CommonBtn text="課題の取得" clickedFun={toGT}/>
+            </CommonBtnSnd>
+            <CommonBtnTrd>
+            <CommonBtn text="予定の確認" clickedFun={toGP}/>
+            </CommonBtnTrd>
+            <CommonBtnFth>
+            <CommonBtn text="課題の確認" clickedFun={toGT}/>
+            </CommonBtnFth>
 
           </SMain>
           </>
@@ -197,32 +217,53 @@ function App() {
       {
         display === 4 && (
           <>
-            <RegisterPlan />
-            <CommonBtn text="戻る" clickedFun={Return}/>
+
+            
+
+
+            <RegisterPlan user={user}/>
+
+            <CommonBtnTItleSnd>
+            <CommonBtn text="タイトルへ戻る" clickedFun={Return}/>
+            </CommonBtnTItleSnd>
+
           </>
         )
       }
       {
         display === 5 && (
           <>
-            <RegisterTask />
-            <CommonBtn text="戻る" clickedFun={Return}/>
+
+
+            <RegisterTask user={user}/>
+
+            <CommonBtnTItleFst>
+            <CommonBtn text="タイトルへ戻る" clickedFun={Return}/>
+            </CommonBtnTItleFst>
           </>
         )
       }
       {
         display === 6 && (
           <>
-            <GetSchedule />
-            <CommonBtn text="戻る" clickedFun={Return}/>
+
+            <GetSchedule user={user}/>
+            <CommonBtnTItleFst>
+            <CommonBtn text="タイトルへ戻る" clickedFun={Return}/>
+            </CommonBtnTItleFst>
+
           </>
         )
       }
       {
         display === 7 && (
           <>
-            <GetTask />
-            <CommonBtn text="戻る" clickedFun={Return}/>
+
+            <GetTask user={user}/>
+            <CommonBtnTItleFst>
+            <CommonBtn text="タイトルへ戻る" clickedFun={Return}/>
+            </CommonBtnTItleFst>
+
           </>
         )
       }
@@ -234,25 +275,155 @@ function App() {
 
 
 
+const CommonBtnTItleFst =styled.div`
+position: fixed;
+ margin-top: 42%;
+ margin-left: 50%;
+ top: 65%; 
+`;
+
+const CommonBtnTItleSnd = styled.div`
+position: fixed;
+ margin-top: 40%;
+ margin-left: 50%;
+ top: 65%;
+`;
+
+
 
 const SMain = styled.div`
   position: relative;
 `;
 
 const Title = styled.h1`
-position: absolute;
-margin: 0 25%;
-width: 200px;
+position: fixed;
+margin: 8% 15%;
+width: 250px;
 color: orange; 
   text-align: center;
-  -webkit-text-stroke: 1px #FFF;
+  -webkit-text-stroke: 0.4px #FFF;
 `;
+
+const CommonBtnFst = styled.button`
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 27% 5%;
+  padding: 0px;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+  `;
+
+const CommonBtnSnd = styled.button`
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 27% 55%;
+  padding: 0px;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+  `;
+
+const CommonBtnTrd = styled.button`
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 130% 5%;
+  padding: 0;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+  `;
+
+const CommonBtnFth = styled.button`
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 130% 55%;
+  padding: 0;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+  `;
+
+
+
 
 const STartBtn = styled.button`
 position: absolute;
   height: 32px;
   width: 140px;
-  margin: 35% 32%;
+  margin: 140% 32%;
   padding-top: 5px;
   font-family: "Volkhov";
   font-style: italic;
@@ -304,12 +475,12 @@ const SLoginBox = styled.div`
   box-sizing: border-box;
   position: relative;
   margin: auto;
-  margin-top: 15%;
+  margin-top: 48%;
   width: 300px;
   height: 300px;
   text-align: center;
   background: whitesmoke;
-  border-radius: 40px;
+  border-radius: 5px;
 `;
 
 const SLogin = styled.h1`

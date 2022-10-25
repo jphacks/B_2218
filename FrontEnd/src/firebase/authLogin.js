@@ -20,7 +20,7 @@ export const signinWithEmailAndPassword = async (email, password) => {
         .signInWithEmailAndPassword(email, password);
 
 
-        alert('ログイン成功しました。');
+        alert('ログイン成功しました。タイトルへ戻り"はじめる"を押してください');
 
         return user;
     } catch (error) {

@@ -11,18 +11,21 @@ import tyotto from "../../assets/Voice/tyottoomati.wav";
 import ikakaga from "../../assets/Voice/ikakaga.wav";
 import dehakotirade from "../../assets/Voice/dehakotirade.wav";
 import mouitido from "../../assets/Voice/mouitido.wav";
+import kadai from "../../assets/Voice/kadai.wav"
+import ganbare from "../../assets/Voice/ganbare.wav"
 import { getNowDate,getNowTime,msecToTime,normalizYear } from "../../Helpers/dateOperation";
 import CommonBtn from "../Atoms/CommonBtn";
 
-const baseURL = "http://localhost:8000/plans/";
-const user = {uid:"test451046test", email:"test4510471@ganbare.co.nl"}
+const baseURL = "https://pacific-earth-33925.herokuapp.com/plans/";
 
 const db = firebase.firestore();
-const RegisterTask = () => {
+const RegisterTask = (props) => {
   const Mtyotto = new Audio(tyotto);
   const Mikakag = new Audio(ikakaga);
   const Mdehakotirade = new Audio(dehakotirade);
   const Mmouitido = new Audio(mouitido);
+  const Mkadai = new Audio(kadai);
+  const Mganbare = new Audio(ganbare);
 
   //state管理
   const [display, setDisplay] = useState(0)
@@ -43,7 +46,7 @@ const RegisterTask = () => {
         text: tText
       })
 
-      //try{
+     // try{
         let data = answer.data
         let limitTime = data[2][0]
         console.log(data[2][0])
@@ -106,7 +109,7 @@ const RegisterTask = () => {
     let limitT = task.limit
     let m = String(limitT.getMonth())
 
-    let a =  user.uid //仮
+    let a =  props.user.uid //仮
 
     await addDoc(collection(db, a, m, "tasks"), {
 
@@ -117,6 +120,7 @@ const RegisterTask = () => {
     });
     setTimeout(setDisplay,3000,1) 
     setTtext(null)
+    setTimeout(Mganbare.play,3000)
   }
 
   const onReturn = () => {

@@ -10,11 +10,11 @@ import tyotto from "../../assets/Voice/tyottoomati.wav";
 import gomesippai from "../../assets/Voice/gomen-sippai.wav";
 
 
-const baseURL = "http://localhost:8000/date/";
+const baseURL = "https://pacific-earth-33925.herokuapp.com/date/";
 
 const user = {uid:"test451046test", email:"test4510471@ganbare.co.nl"}
 
-const GetTask = () => {
+const GetSchedule = (props) => {
   const Mtyotto = new Audio(tyotto);
   const Mgomen = new Audio(gomesippai);
 
@@ -54,7 +54,7 @@ const GetTask = () => {
           start.setHours(0, 0, 0, 0)
           console.log(start)//error検出
 
-          stop.setDate(stop.getDate() + 7)
+          stop.setDate(stop.getDate() + 1)
           stop.setHours(0, 0, 0, 0)
           console.log(stop)//error検出
 
@@ -64,8 +64,8 @@ const GetTask = () => {
           console.log(stop)//error検出
 
           const db = firebase.firestore();
-          const q = query(collection(db, user.uid ,M,"tasks"), 
-            orderBy('limit'),
+          const q = query(collection(db, props.user.uid ,M,"plans"), 
+            orderBy('start'),
             startAt(start),
             endAt(stop)
           );
@@ -112,11 +112,11 @@ const GetTask = () => {
     }
     {
       display === 1 && 
-        <Thread data={contents} type="tsk"/>
+        <Thread data={contents} type="sc"/>
     }
 
     </>
   )
 }
 
-export default GetTask;
+export default GetSchedule;

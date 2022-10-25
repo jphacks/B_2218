@@ -26,9 +26,9 @@ import { waitAsync } from "../../Helpers/waitAsync";
 import Thread from "../Atoms/Thread";
 import { getNowDate,getNowTime,normalizYear } from "../../Helpers/dateOperation";
 
-const baseURL = "http://localhost:8000/plans/";
+const baseURL = "https://pacific-earth-33925.herokuapp.com/plans/";
 //仮置き
-const user = {uid:"test451046test", email:"test4510471@ganbare.co.nl"}
+
 
 
 const firebaseConfig = {
@@ -205,7 +205,7 @@ const RegisterPlan = (props) => {
     let startT = onlyOnePlan.start
     let m = String(startT.getMonth())
 
-    let a =  user.uid //仮
+    let a =  props.user.uid //仮
 
     await addDoc(collection(db, a, m, "plans"), {
 
@@ -238,10 +238,11 @@ const RegisterPlan = (props) => {
   const [answerSt, setAnswerSt] = useState(200)
 
   const onMatome = () => {
-    alert("すいません、準備中です")
-    // setMatomeNum(1)
-    // Mhitotume.play()
-    // setTimeout(setDisplay,500,3)
+
+    setMatomeNum(1)
+    Mhitotume.play()
+    setTimeout(setDisplay,500,3)
+
   }
 
   useEffect(() => {
@@ -277,13 +278,27 @@ const RegisterPlan = (props) => {
         setAnswerSt(answer.status)
         
         try{
-            let data = answer.data
+          let data = answer.data
+          let startTime = data[2][0]
+          let finishTime = data[2][1]
+
+          if(startTime === null){
+            throw new Error('StartTimeNone');
+            
+          }else{
+            startTime = new Date(data[2][0])
+            startTime = normalizYear(startTime)
+          }
+          if(finishTime != null){
+            finishTime = new Date(data[2][1])
+            finishTime = normalizYear(finishTime)
+          }
             
             let dataObj = {
               title:data[0],
               location:data[1],
-              start:new Date(data[2][0]),
-              finish:new Date(data[2][1]),
+              start: startTime,
+              finish:finishTime,
               range:data[2][2]
             }
             matomePlans.push(dataObj)
@@ -299,9 +314,7 @@ const RegisterPlan = (props) => {
         }
 
       //brock終了
-      }
-
-      if(matomeNum % 3 === 1 && vText1 !== null){
+      }else if(matomeNum % 3 === 1 && vText1 !== null){
 
         console.log(vText1)
         setPlansCount(plansCount + 1)
@@ -312,16 +325,32 @@ const RegisterPlan = (props) => {
         setAnswerSt(answer.status)
         
         try{
-            let data = answer.data
+          let data = answer.data
+          let startTime = data[2][0]
+          let finishTime = data[2][1]
+
+          if(startTime === null){
+            throw new Error('StartTimeNone');
+            
+          }else{
+            startTime = new Date(data[2][0])
+            startTime = normalizYear(startTime)
+          }
+          if(finishTime != null){
+            finishTime = new Date(data[2][1])
+            finishTime = normalizYear(finishTime)
+          }
+            
             let dataObj = {
               title:data[0],
               location:data[1],
-              start:new Date(data[2][0]),
-              finish:new Date(data[2][1]),
+              start: startTime,
+              finish:finishTime,
               range:data[2][2]
             }
             matomePlans.push(dataObj)
             dataObj = {}
+
           }catch{
             setTimeout(Mmouitido.play,3000)
             setDisplay(1)
@@ -353,15 +382,30 @@ const RegisterPlan = (props) => {
         
         try{
             let data = answer.data
-            let dataObj = {
-              title:data[0],
-              location:data[1],
-              start:new Date(data[2][0]),
-              finish:new Date(data[2][1]),
-              range:data[2][2]
+            let startTime = data[2][0]
+            let finishTime = data[2][1]
+
+            if(startTime === null){
+              throw new Error('StartTimeNone');
+              
+            }else{
+              startTime = new Date(data[2][0])
+              startTime = normalizYear(startTime)
             }
-            matomePlans.push(dataObj)
-            dataObj = {}
+            if(finishTime != null){
+              finishTime = new Date(data[2][1])
+              finishTime = normalizYear(finishTime)
+            }
+              
+              let dataObj = {
+                title:data[0],
+                location:data[1],
+                start: startTime,
+                finish:finishTime,
+                range:data[2][2]
+              }
+              matomePlans.push(dataObj)
+              dataObj = {}
           }catch{
             Mgomesippai.play()
             setTimeout(Mmouitido.play,3000)
@@ -371,8 +415,7 @@ const RegisterPlan = (props) => {
             setVText2(null)
           }
 
-      }
-      if(matomeNum % 3 === 2 && vText2 !== null){
+      }else if(matomeNum % 3 === 2 && vText2 !== null){
         
         console.log(vText2)
         setPlansCount(2)
@@ -385,15 +428,30 @@ const RegisterPlan = (props) => {
         
         try{
             let data = answer.data
-            let dataObj = {
-              title:data[0],
-              location:data[1],
-              start:new Date(data[2][0]),
-              finish:new Date(data[2][1]),
-              range:data[2][2]
+            let startTime = data[2][0]
+            let finishTime = data[2][1]
+
+            if(startTime === null){
+              throw new Error('StartTimeNone');
+              
+            }else{
+              startTime = new Date(data[2][0])
+              startTime = normalizYear(startTime)
             }
-            matomePlans.push(dataObj)
-            dataObj = {}
+            if(finishTime != null){
+              finishTime = new Date(data[2][1])
+              finishTime = normalizYear(finishTime)
+            }
+              
+              let dataObj = {
+                title:data[0],
+                location:data[1],
+                start: startTime,
+                finish:finishTime,
+                range:data[2][2]
+              }
+              matomePlans.push(dataObj)
+              dataObj = {}
           }catch{
             Mgomesippai.play()
             setTimeout(Mmouitido.play,3000)
@@ -423,16 +481,30 @@ const RegisterPlan = (props) => {
         
         try{
             let data = answer.data
-            let dataObj = {
-              title:data[0],
-              location:data[1],
-              start: new Date(data[2][0]),
-              finish:new Date(data[2][1]),
-              range:data[2][2]
+            let startTime = data[2][0]
+            let finishTime = data[2][1]
+
+            if(startTime === null){
+              throw new Error('StartTimeNone');
+              
+            }else{
+              startTime = new Date(data[2][0])
+              startTime = normalizYear(startTime)
             }
-            matomePlans.push(dataObj)
-            dataObj = {}
-            
+            if(finishTime != null){
+              finishTime = new Date(data[2][1])
+              finishTime = normalizYear(finishTime)
+            }
+              
+              let dataObj = {
+                title:data[0],
+                location:data[1],
+                start: startTime,
+                finish:finishTime,
+                range:data[2][2]
+              }
+              matomePlans.push(dataObj)
+              dataObj = {}
           }catch{
             Mgomesippai.play()
             setTimeout(Mmouitido.play,3000)
@@ -442,8 +514,7 @@ const RegisterPlan = (props) => {
             setVText3(null)
           }
 
-      }
-      if(matomeNum % 3 === 0 && vText3 !== null){
+      }else if(matomeNum % 3 === 0 && vText3 !== null){
 
         console.log(vText2)
         setPlansCount(plansCount + 1)
@@ -456,15 +527,30 @@ const RegisterPlan = (props) => {
         
         try{
             let data = answer.data
-            let dataObj = {
-              title:data[0],
-              location:data[1],
-              start:new Date(data[2][0]),
-              finish:new Date(data[2][1]),
-              range:data[2][2]
+            let startTime = data[2][0]
+            let finishTime = data[2][1]
+
+            if(startTime === null){
+              throw new Error('StartTimeNone');
+              
+            }else{
+              startTime = new Date(data[2][0])
+              startTime = normalizYear(startTime)
             }
-            matomePlans.push(dataObj)
-            dataObj = {}
+            if(finishTime != null){
+              finishTime = new Date(data[2][1])
+              finishTime = normalizYear(finishTime)
+            }
+              
+              let dataObj = {
+                title:data[0],
+                location:data[1],
+                start: startTime,
+                finish:finishTime,
+                range:data[2][2]
+              }
+              matomePlans.push(dataObj)
+              dataObj = {}
 
           }catch{
             Mgomesippai.play()
@@ -493,8 +579,30 @@ const RegisterPlan = (props) => {
     )
   }
 
-  const onOKM = () => {
+  const onOKM = async () => {
+    Mdehakotirade.play()
+    let startT = matomePlans[0].start
+    let m = String(startT.getMonth())
 
+    let a =  props.user.uid //仮
+
+    for await (let e of matomePlans){
+      
+      addDoc(collection(db, a, m, "plans"), {
+  
+        title:e.title,
+        location:e.location,
+        start: e.start,
+        finish: e.finish
+  
+      });
+    }
+
+
+
+    setOneNum(0)
+    setTimeout(setDisplay,3000,1) 
+    setVText0(null)
   }
 
 
@@ -514,8 +622,12 @@ const RegisterPlan = (props) => {
       display === 1 &&
       <SFirstWrap>
        <SBtnsWrap>
+        <CommonBtnSth>
          <CommonBtn text="1つずつ登録" clickedFun={oneOnlyStart}/>
+        </CommonBtnSth>
+         <CommonBtnFifth>          
          <CommonBtn text="まとめて登録" clickedFun={onMatome}/>
+         </CommonBtnFifth>
        </SBtnsWrap>   
       </SFirstWrap>
     }
@@ -550,16 +662,22 @@ const RegisterPlan = (props) => {
       display === 3 &&
         <SMatomeVoice>
           <Voice setFun={setVtext}/>
+          <CommonBtnFin>
           <CommonBtn text="終了する" clickedFun={onEnd}/>
+          </CommonBtnFin>
         </SMatomeVoice>
     }
     {
       display === 4 &&(
         <>
-          <Thread data={matomePlans}/>
+          <Thread data={matomePlans} type="con"/>
           <SBtnsWrap>
+          <CommonBtnOK>
           <CommonBtn text="OK" clickedFun={onOKM}/>
-          <CommonBtn text="やりなおす" clickedFun={onReturn}/>
+          </CommonBtnOK>
+          <CommonBtnRedo>
+          <CommonBtn text="やりなおし" clickedFun={onReturn}/>
+          </CommonBtnRedo>
           </SBtnsWrap> 
         </>
       )
@@ -577,6 +695,95 @@ const RegisterPlan = (props) => {
 ////////////////////////////////////////
 //ここからSTYLE////////////////////////
 //////////////////////////////////////
+
+
+const CommonBtnRedo = styled.div`
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 95% 50%;
+  padding: 0px;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+  
+
+`;
+
+const CommonBtnOK = styled.div`
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 95% 8%;
+  padding: 0px;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+`;
+
+const CommonBtnFin = styled.div`
+
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 130% 50%;
+  padding: 0px;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+  
+`;
 
 const SFirstWrap = styled.div`
 
@@ -623,5 +830,63 @@ const TResult = styled.div`
 const SMatomeVoice = styled.div`
 
 `;
+
+const CommonBtnFifth = styled.button`
+
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 130% 50%;
+  padding: 0;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+  `;
+const CommonBtnSth = styled.button`
+
+position: fixed;
+  height: 32px;
+  width: 140px;
+  margin: 130% 10%;
+  padding: 0;
+  font-family: "Volkhov";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+  border-radius: 15px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  font-feature-settings: "kern" off;
+  color: #ffffff;
+  border: none;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  display: inline-block;
+  background-color: orange;
+  text-align: center;
+  box-shadow: 0px 2px 0px 0px #DB8D00;
+  transition: 0.2s;
+  `;
+  
 
 export default RegisterPlan;

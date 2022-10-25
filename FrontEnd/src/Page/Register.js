@@ -398,6 +398,7 @@ const SOk = styled.button`
 `;
 
 const SOkk = styled.button`
+position: fixed;
  height: 32px;
   width: 140px;
   margin: 50% 1%;
@@ -541,7 +542,7 @@ const TNow = styled.div`
 
 const TResult = styled.div`
   width: 70%;
-  height: 150px;
+  height: 10px;
   border: solid 1px;
   background-color: #ffe9d8;
   margin:auto;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Cell from "./Cell";
+import CellConfirm from "./CellConfirm";
 import CellTask from "./CellTask";
 
 
@@ -68,6 +69,11 @@ const Thread = (props) => {
   if(props.type === "tsk"){
     for(let i = 0; i < props.data.length; i++){
       items.push(<CellTask key={i} id={i} contents={props.data[i]}/>)
+    }
+  }
+  if(props.type === "con"){
+    for(let i = 0; i < props.data.length; i++){
+      items.push(<CellConfirm key={i} id={i} contents={props.data[i]}/>)
     }
   }
   

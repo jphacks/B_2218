@@ -20,7 +20,7 @@ todoリストに書き出してみようにも、タスク管理アプリを使�
 ![demo](https://user-images.githubusercontent.com/103818070/197911708-933662e5-621d-4a13-87e8-ad0ab341e3e1.jpg)
 
   
-プロダクトへのリンク：https://jphacks-aca6b.web.app/
+プロダクトへのリンク：https://jphacks-aca6b.web.app/　※モバイル端末でのプレイをお願いします。
 
 デモ動画：
 

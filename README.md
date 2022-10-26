@@ -63,5 +63,5 @@ todoリストに書き出してみようにも、タスク管理アプリを使�
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
 
 #### 著作権表記
-- (http://u.xgoo.jp/img/sgoo.png)
+- <img src="http://u.xgoo.jp/img/sgoo.png" height="100px"> 
 - 『VOICEVOX もち子(cv明日葉よもぎ)』

@@ -65,4 +65,4 @@ todoリストに書き出してみようにも、タスク管理アプリを使�
 #### 著作権表記
 - gooラボ　時刻情報正規化API
 <img src="http://u.xgoo.jp/img/sgoo.png" height="100px"> 
--『VOICEVOX もち子(cv明日葉よもぎ)』
+- 『VOICEVOX もち子(cv明日葉よもぎ)』
